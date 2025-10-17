@@ -1,0 +1,43 @@
+Project: Bash Prompt Simple Developer
+Author: Santiago Correa Vergara
+─────────────────────────────────────────────
+LICENSE — Dual License: GPLv2 + CC BY-SA 4.0
+─────────────────────────────────────────────
+
+SOFTWARE LICENSE (for bashrc_config.txt and related scripts)
+------------------------------------------------------------
+This project’s source code and configuration files
+(including bashrc_config.txt and any shell scripts)
+are licensed under the GNU General Public License, version 2 (GPLv2).
+
+You are free to use, study, modify, and redistribute this code
+under the same license, provided that you preserve this notice
+and make the source available under identical terms.
+
+Full license text:
+https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+
+DOCUMENTATION & MEDIA LICENSE (for README, assets/, and docs/)
+--------------------------------------------------------------
+The documentation, images, and any non-code materials
+(including README.md, images, and other files in assets/)
+are licensed under the Creative Commons
+Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+
+This means you may share and adapt the material
+as long as you provide proper attribution and
+distribute any derivative works under the same license.
+
+Full license text:
+https://creativecommons.org/licenses/by-sa/4.0/
+
+
+COPYLEFT & AUTHORSHIP NOTICE
+----------------------------
+© 2025 Santiago Correa Vergara
+All rights reserved under the terms of their respective licenses.
+
+This project embraces the copyleft spirit:
+freedom to learn, modify, and share — as long as that freedom remains for everyone.
+
