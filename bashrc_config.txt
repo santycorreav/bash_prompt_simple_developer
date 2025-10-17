@@ -1,0 +1,86 @@
+# ====== COLORS THEME START ======
+
+# Colores base
+COLOR1="\[\e[32m\]"
+COLOR2="\[\e[34m\]"
+COLOR3="\[\e[33m\]"
+COLOR4="\[\e[36m\]"
+COLOR5="\[\e[31m\]"
+
+# Colores específicos
+COLOR6="\[\e[35m\]"      # Para Python
+COLOR7="\[\e[38;5;93m\]"  # Para Git
+
+
+# ====== COLORS THEME END ======
+
+
+# Cache de versión de Python
+cache_python_version() {
+  PYTHON_VERSION=""
+  if command -v python3 >/dev/null 2>&1; then
+    PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
+  elif command -v python >/dev/null 2>&1; then
+    PYTHON_VERSION=$(python --version 2>&1 | awk '{print $2}')
+  fi
+}
+
+chpwd() {
+  cache_python_version
+}
+
+# Información de Git mejorada
+# Información de Git mejorada - VERSIÓN ESPACIADA
+parse_git_branch() {
+  local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  if [[ -n $branch ]]; then
+    local staged=""
+    local unstaged=""
+    local untracked=""
+    local commit_count=""
+    
+    commit_count=$(git rev-list --count HEAD 2>/dev/null)
+    
+    # Archivos staged (listos para commit)
+    local staged_count=$(git diff --cached --name-only 2>/dev/null | wc -l)
+    # Archivos modificados pero no staged
+    local unstaged_count=$(git diff --name-only 2>/dev/null | wc -l)
+    # Archivos sin trackear
+    local untracked_count=$(git ls-files --others --exclude-standard 2>/dev/null | wc -l)
+    
+    if [[ $staged_count -gt 0 ]]; then
+      staged="  ${staged_count} staged"
+    fi
+    if [[ $unstaged_count -gt 0 ]]; then
+      unstaged="  ${unstaged_count} modified"
+    fi
+    if [[ $untracked_count -gt 0 ]]; then
+      untracked="  ${untracked_count} untracked"
+    fi
+    
+    local changes="${staged}${unstaged}${untracked}"
+    echo " ${branch}${changes}  ${commit_count} commits"
+  fi
+}
+
+# Información del entorno virtual de Python - VERSIÓN ESPACIADA
+# Información del entorno virtual de Python - SOLO con venv activo
+venv_info() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    local python_version=$(python --version 2>&1 | awk '{print $2}')
+    local env_type="venv"
+    
+    # Detectar si es conda
+    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+      env_type="conda"
+      echo " $(basename "$CONDA_DEFAULT_ENV")  ${python_version} "
+    else
+      echo " $(basename "$VIRTUAL_ENV")  ${python_version} "
+    fi
+  fi
+  # No mostrar nada si no hay venv activo - ELIMINADO el elif
+}
+# PS1 actualizado con nombres genéricos
+PS1_CUSTOM="${COLOR1}\$(venv_info)${RESET}${COLOR3}\w${RESET} ${COLOR7}\$(parse_git_branch)${RESET}${COLOR5}\$(jobs_info)${RESET}\n❯ "
+export PS1="$PS1_CUSTOM"
+
