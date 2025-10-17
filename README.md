@@ -16,6 +16,85 @@ Cualquier persona puede usar esta configuración para mejorar su experiencia en 
 
 ---
 
+## 🧩 File Structure: `bashrc_config.txt`
+
+This configuration file is organized in a clean and modular way to make it easy to understand, customize, and extend.
+
+### 1. 🎨 Color Theme Section
+```bash
+# ====== COLORS THEME START ======
+# Base colors
+COLOR1="\[\e[32m\]"   # Green
+COLOR2="\[\e[34m\]"   # Blue
+COLOR3="\[\e[33m\]"   # Yellow
+COLOR4="\[\e[36m\]"   # Cyan
+COLOR5="\[\e[31m\]"   # Red
+
+# Specific colors
+COLOR6="\[\e[35m\]"      # For Python
+COLOR7="\[\e[38;5;93m\]" # For Git
+# ====== COLORS THEME END ======
+```
+Defines all ANSI color codes used in the prompt.  
+You can easily change these to adjust the color scheme to your liking.
+
+---
+
+### 2. 🐍 Python Version Cache
+```bash
+cache_python_version() {
+  ...
+}
+```
+This function checks and stores the current Python version.  
+It runs automatically whenever you change directories (`chpwd()`), keeping the prompt up to date without unnecessary performance cost.
+
+---
+
+### 3. 🌿 Git Branch and Repository Info
+```bash
+parse_git_branch() {
+  ...
+}
+```
+Displays detailed Git information:
+- Current branch name  
+- Number of commits  
+- Number of staged, modified, and untracked files  
+
+Includes icons for readability and visual structure.
+
+---
+
+### 4. ⚗️ Python Virtual Environment Info
+```bash
+venv_info() {
+  ...
+}
+```
+Shows the current Python virtual environment (venv or conda) and the active Python version.  
+If no environment is active, it stays hidden to keep the prompt clean.
+
+---
+
+### 5. 💡 Prompt Construction (PS1)
+```bash
+PS1_CUSTOM="${COLOR1}\$(venv_info)${RESET}${COLOR3}\w${RESET} ${COLOR7}\$(parse_git_branch)${RESET}${COLOR5}\$(jobs_info)${RESET}\n❯ "
+export PS1="$PS1_CUSTOM"
+```
+Defines the final Bash prompt (`PS1`), combining:
+- The virtual environment info  
+- The current working directory  
+- Git branch and status  
+- Active jobs (if any)  
+- And finally the command line symbol `❯`
+
+---
+
+🧠 **Tip:** Each function can be modified or extended individually without breaking the rest of the prompt.
+
+---
+
 ## ⚙️ Installation
 
 ### Step 1: Clone the repository
