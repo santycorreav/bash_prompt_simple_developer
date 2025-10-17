@@ -1,4 +1,4 @@
-# 🧠 Bash Prompt for Developers / Prompt de Bash para Desarrolladores
+# Bash Prompt for Developers / Prompt de Bash para Desarrolladores
 
 ## 🇬🇧 English Introduction
 
