@@ -1,0 +1,227 @@
+# =========================================
+# GLOBAL .GITIGNORE — by Santiago Correa Vergara
+# Safe universal ignore file for developers.
+# Prevents uploading binaries, caches, local configs, or temporary files.
+# =========================================
+
+# ==== System ====
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.lock
+*.log
+*.cache
+*.gz
+*.zip
+*.tar
+*.tgz
+*.7z
+*.rar
+*~
+
+# ==== GNU / Linux ====
+.cache/
+.local/
+.Trash-*/
+lost+found/
+
+# ==== macOS ====
+.AppleDouble
+.LSOverride
+Icon?
+.Spotlight-V100
+.Trashes
+
+# ==== Windows ====
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==== Dotfiles and user configs (ignore local editor/terminal configs) ====
+# Add specific dotfiles you don't want in repos; keep shared configs in repo consciously.
+.config/
+.config/*
+!.config/your-shared-config/   # <-- optional: whitelist if you intentionally track a config
+.config/nvim/
+.config/gtk-3.0/
+.config/alacritty/
+.config/kitty/
+.config/Code/ # VS Code settings dir if present
+
+# Common single-file dotfiles
+.bashrc
+.bash_profile
+.zshrc
+.zprofile
+.zshenv
+.profile
+.inputrc
+.Xresources
+.Xdefaults
+.xsession-errors
+
+# ==== Editors / IDEs ====
+# VS Code
+.vscode/
+.history/
+
+# JetBrains IDEs (IntelliJ, Android Studio, PyCharm, etc.)
+.idea/
+*.iml
+out/
+
+# Lite XL / Sublime / Others
+*.sublime-workspace
+*.sublime-project
+*.session
+*.workspace
+
+# ==== Build Artifacts ====
+/build/
+/dist/
+/bin/
+/obj/
+/out/
+/target/
+*.o
+*.obj
+*.so
+*.a
+*.exe
+*.dll
+*.class
+*.jar
+*.war
+*.ear
+*.out
+*.bin
+
+# ==== C / C++ ====
+/cmake-build-*/
+/CMakeFiles/
+CMakeCache.txt
+Makefile
+*.dSYM/
+*.elf
+*.map
+
+# ==== Python ====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.whl
+*.egg
+*.egg-info/
+pip-log.txt
+htmlcov/
+.tox/
+venv/
+ENV/
+env/
+.venv/
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+
+# ==== Node.js / JavaScript / TypeScript ====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+*.tsbuildinfo
+
+# ==== Java / Kotlin / Android ====
+.gradle/
+build/
+captures/
+local.properties
+*.apk
+*.ap_
+*.dex
+*.class
+*.keystore
+*.jks
+*.aab
+*.hprof
+*.prof
+*.orig
+app/build/
+.gradle/
+
+# ==== Flutter / Dart ====
+.dart_tool/
+.buildlog/
+.packages
+pubspec.lock
+
+# ==== LaTeX / Overleaf ====
+*.aux
+*.bbl
+*.blg
+*.log
+*.toc
+*.out
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.nav
+*.snm
+*.pdf
+*.dvi
+
+# ==== Logs and Backups ====
+*.bak
+*.log
+*.old
+*.orig
+
+# ==== Local Configs & Secrets ====
+.env
+.env.*
+*.local
+*.secret
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+secrets.json
+
+# ==== Databases ====
+*.sqlite3
+*.db
+*.lock
+*.pid
+
+# ==== Godot ====
+.import/
+export.cfg
+export_presets.cfg
+
+# ==== Others ====
+nohup.out
+.vscode-test/
+*.rej
+*.patch
+*.swp
+*.tmp
+*.bak
+
+# ==== End of File ====
+# Author: Santiago Correa
+# Version: Global Universal .gitignore (updated to ignore user .config like nvim)
+
