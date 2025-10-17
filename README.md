@@ -28,17 +28,22 @@ git clone https://github.com/santycorreav/bash_prompt_simple_developer
 cd bash_prompt_simple_developer
 ```
 
-### Step 3: Apply the configuration
+### Step 3: Backup your current bash configuration
 ```bash
-cat bashrc_config.txt >> ~/.bashrc
+cp ~/.bashrc ~/.bashrc.backup
 ```
 
-### Step 4: Reload your bash configuration
+### Step 4: Source the new prompt configuration
+```bash
+echo "source ~/bash_prompt_simple_developer/bashrc_config.txt" >> ~/.bashrc
+```
+
+### Step 5: Reload your bash configuration
 ```bash
 source ~/.bashrc
 ```
 
-✅ **That's it!** Your bash prompt is now configured with the developer-friendly settings.
+✅ **Done!** Your bash prompt is now configured with developer-friendly settings.
 
 ---
 
