@@ -60,6 +60,8 @@ source ~/.bashrc
 
 ## 🖼️ Preview
 
+![Bash Prompt Preview](assets/bash_prompt.png)
+
 
 ---
 
