@@ -16,6 +16,35 @@ Cualquier persona puede usar esta configuración para mejorar su experiencia en 
 
 ---
 
+## ⚙️ Requirements
+
+To ensure your Bash prompt looks and works exactly as intended, make sure you have the following:
+
+### 🧠 Bash Version
+```bash
+bash --version
+```
+Output example:
+```
+GNU bash, version 5.3.3(1)-release (x86_64-solus-linux-gnu)
+Copyright (C) 2025 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+```
+
+> This configuration was tested with **GNU Bash 5.3.3**, but it should work on Bash 4.4+ without issues.
+
+
+### 💬 Terminal Font
+**Font:** `MesloLGS DZ Nerd Font` (size 11pt)
+
+> Nerd Fonts are recommended to properly display icons such as ``, ``, ``, and others.  
+> You can download it from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
+
+
+✅ **Optional:** Make sure your terminal supports UTF-8 and TrueColor (24-bit color) for best appearance.
+
+---
+
 ## 🧩 File Structure: `bashrc_config.txt`
 
 This configuration file is organized in a clean and modular way to make it easy to understand, customize, and extend.
@@ -33,6 +62,8 @@ COLOR5="\[\e[31m\]"   # Red
 # Specific colors
 COLOR6="\[\e[35m\]"      # For Python
 COLOR7="\[\e[38;5;93m\]" # For Git
+COLOR8="\[\e[38;2;255;255;255m\]"  # Pure White, for terminal and ❯
+
 # ====== COLORS THEME END ======
 ```
 Defines all ANSI color codes used in the prompt.  
@@ -79,8 +110,9 @@ If no environment is active, it stays hidden to keep the prompt clean.
 
 ### 5. 💡 Prompt Construction (PS1)
 ```bash
-PS1_CUSTOM="${COLOR1}\$(venv_info)${RESET}${COLOR3}\w${RESET} ${COLOR7}\$(parse_git_branch)${RESET}${COLOR5}\$(jobs_info)${RESET}\n❯ "
-export PS1="$PS1_CUSTOM"
+P
+S1_CUSTOM="${COLOR1}\$(venv_info)${COLOR3}\w ${COLOR7}\$(parse_git_branch)\n${COLOR8}❯"
+export PS1=$PS1_CUSTOM
 ```
 Defines the final Bash prompt (`PS1`), combining:
 - The virtual environment info  
@@ -141,6 +173,11 @@ source ~/.bashrc
 
 ![Bash Prompt Preview](assets/bash_prompt.png)
 
+A clean and minimal Bash prompt showing:
+- Current directory path
+- Active Python virtual environment (if any)
+- Git branch, commits, and file status
+- Developer-friendly icons and color-coded information
 
 ---
 
