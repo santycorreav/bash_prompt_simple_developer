@@ -37,7 +37,7 @@ License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 ### 💬 Terminal Font
 **Font:** `MesloLGS DZ Nerd Font` (size 11pt)
 
-> Nerd Fonts are recommended to properly display icons such as ``, ``, ``, and others.  
+> Nerd Fonts are recommended to properly display icons.  
 > You can download it from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
 
 
