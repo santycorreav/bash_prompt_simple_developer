@@ -110,8 +110,7 @@ If no environment is active, it stays hidden to keep the prompt clean.
 
 ### 5. 💡 Prompt Construction (PS1)
 ```bash
-P
-S1_CUSTOM="${COLOR1}\$(venv_info)${COLOR3}\w ${COLOR7}\$(parse_git_branch)\n${COLOR8}❯"
+PS1_CUSTOM="${COLOR1}\$(venv_info)${COLOR3}\w ${COLOR7}\$(parse_git_branch)\n${COLOR8}❯"
 export PS1=$PS1_CUSTOM
 ```
 Defines the final Bash prompt (`PS1`), combining:
