@@ -11,7 +11,7 @@ COLOR5="\[\e[31m\]"      # Red
 # Specific colors
 COLOR6="\[\e[35m\]"      # For Python
 COLOR7="\[\e[38;5;93m\]" # For Git
-COLOR8="\[\e[97m\]"      # White (for input and prompt symbol)
+COLOR8="\[\e[38;2;255;255;255m\]"  # Pure White, for terminal and ❯
 
 # ====== COLORS THEME END ======
 
