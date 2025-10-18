@@ -86,5 +86,5 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Final PS1 (your image style, no RESET, no jobs_info)
 PS1_CUSTOM="${COLOR1}\$(venv_info)${COLOR3}\w ${COLOR7}\$(parse_git_branch)\n${COLOR8}❯"
-export PS1="$PS1_CUSTOM"
+export PS1=$PS1_CUSTOM
 
