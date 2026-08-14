@@ -1,6 +1,6 @@
 # Bash Prompt for Developers / Prompt de Bash para Desarrolladores
 
-## 🇬🇧 English Introduction
+## English Introduction
 
 This is a personal repository containing a clean and efficient bash prompt configuration designed for developers.  
 I created this because I felt unsatisfied with **oh-my-bash** — while I think it's a great project, it didn't quite align with my preferences for simplicity.  
@@ -8,7 +8,7 @@ Anyone can use this configuration to enhance their terminal experience with a pr
 
 ---
 
-## 🇪🇸 Introducción en Español
+## Introducción en Español
 
 Este es un repositorio personal que contiene una configuración de prompt de bash limpia y eficiente diseñada para desarrolladores.  
 Creé esto porque me sentía insatisfecho con **oh-my-bash** — aunque me parece un proyecto genial, no acababa de encajar conmigo y mi preferencia por la simplicidad.  
@@ -20,7 +20,7 @@ Cualquier persona puede usar esta configuración para mejorar su experiencia en 
 
 To ensure your Bash prompt looks and works exactly as intended, make sure you have the following:
 
-### 🧠 Bash Version
+### Bash Version
 ```bash
 bash --version
 ```
@@ -34,22 +34,22 @@ License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 > This configuration was tested with **GNU Bash 5.3.3**, but it should work on Bash 4.4+ without issues.
 
 
-### 💬 Terminal Font
+### Terminal Font
 **Font:** `MesloLGS DZ Nerd Font` (size 11pt)
 
 > Nerd Fonts are recommended to properly display icons.  
 > You can download it from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
 
 
-✅ **Optional:** Make sure your terminal supports UTF-8 and TrueColor (24-bit color) for best appearance.
+**Optional:** Make sure your terminal supports UTF-8 and TrueColor (24-bit color) for best appearance.
 
 ---
 
-## 🧩 File Structure: `bashrc_config.txt`
+##File Structure: `bashrc_config.txt`
 
 This configuration file is organized in a clean and modular way to make it easy to understand, customize, and extend.
 
-### 1. 🎨 Color Theme Section
+### 1. Color Theme Section
 ```bash
 # ====== COLORS THEME START ======
 # Base colors
