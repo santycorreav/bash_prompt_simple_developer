@@ -16,7 +16,7 @@ Cualquier persona puede usar esta configuración para mejorar su experiencia en 
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
 To ensure your Bash prompt looks and works exactly as intended, make sure you have the following:
 
@@ -45,7 +45,7 @@ License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 
 ---
 
-##File Structure: `bashrc_config.txt`
+### File Structure: `bashrc_config.txt`
 
 This configuration file is organized in a clean and modular way to make it easy to understand, customize, and extend.
 
@@ -71,7 +71,7 @@ You can easily change these to adjust the color scheme to your liking.
 
 ---
 
-### 2. 🐍 Python Version Cache
+### 2. Python Version Cache
 ```bash
 cache_python_version() {
   ...
@@ -82,7 +82,7 @@ It runs automatically whenever you change directories (`chpwd()`), keeping the p
 
 ---
 
-### 3. 🌿 Git Branch and Repository Info
+### 3. Git Branch and Repository Info
 ```bash
 parse_git_branch() {
   ...
@@ -97,7 +97,7 @@ Includes icons for readability and visual structure.
 
 ---
 
-### 4. ⚗️ Python Virtual Environment Info
+### 4. Python Virtual Environment Info
 ```bash
 venv_info() {
   ...
@@ -108,7 +108,7 @@ If no environment is active, it stays hidden to keep the prompt clean.
 
 ---
 
-### 5. 💡 Prompt Construction (PS1)
+### 5. Prompt Construction (PS1)
 ```bash
 PS1_CUSTOM="${COLOR1}\$(venv_info)${COLOR3}\w ${COLOR7}\$(parse_git_branch)\n${COLOR8}❯"
 export PS1=$PS1_CUSTOM
@@ -122,11 +122,11 @@ Defines the final Bash prompt (`PS1`), combining:
 
 ---
 
-🧠 **Tip:** Each function can be modified or extended individually without breaking the rest of the prompt.
+**Tip:** Each function can be modified or extended individually without breaking the rest of the prompt.
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### Step 1: Clone the repository
 ```bash
@@ -153,11 +153,11 @@ echo "source ~/bash_prompt_simple_developer/bashrc_config.txt" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-✅ **Done!** Your bash prompt is now configured with developer-friendly settings.
+**Done!** Your bash prompt is now configured with developer-friendly settings.
 
 ---
 
-## 🌟 Features
+## Features
 
 - Clean and professional appearance  
 - Git branch status integration  
@@ -168,7 +168,7 @@ source ~/.bashrc
 
 ---
 
-## 🖼️ Preview
+## Preview
 
 ![Bash Prompt Preview](assets/bash_prompt.png)
 
@@ -180,7 +180,7 @@ A clean and minimal Bash prompt showing:
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Santiago Correa Vergara**
 
