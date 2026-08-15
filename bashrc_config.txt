@@ -7,8 +7,8 @@ COLOR4="\[\e[36m\]"      # Cyan
 COLOR5="\[\e[31m\]"      # Red
 
 # Specific colors
-COLOR6="\[\e[35m\]"      # For Python
-COLOR7="\[\e[38;5;93m\]" # For Git
+COLOR6="\[\e[95m\]"      # Bright Magenta - Python
+COLOR7="\[\e[94m\]"      # Bright Blue - Git
 COLOR8="\[\e[38;2;255;255;255m\]"  # Pure White, for terminal and ❯
 # ====== COLORS THEME END ======
 
