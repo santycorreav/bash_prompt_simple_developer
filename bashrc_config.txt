@@ -1,6 +1,4 @@
-
 # ====== COLORS THEME START ======
-
 # Base colors
 COLOR1="\[\e[32m\]"      # Green
 COLOR2="\[\e[34m\]"      # Blue
@@ -12,79 +10,114 @@ COLOR5="\[\e[31m\]"      # Red
 COLOR6="\[\e[35m\]"      # For Python
 COLOR7="\[\e[38;5;93m\]" # For Git
 COLOR8="\[\e[38;2;255;255;255m\]"  # Pure White, for terminal and ❯
-
 # ====== COLORS THEME END ======
 
+# Variables globales para cache
+PYTHON_VERSION=""
+LAST_PWD=""
+LAST_GIT_BRANCH=""
+LAST_GIT_STATUS=""
 
-# Python version cache
-cache_python_version() {
-  PYTHON_VERSION=""
-  if command -v python3 >/dev/null 2>&1; then
-    PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
-  elif command -v python >/dev/null 2>&1; then
-    PYTHON_VERSION=$(python --version 2>&1 | awk '{print $2}')
-  fi
+# Detectar versión de Python una sola vez (solo al inicio o al cambiar de directorio)
+get_python_version() {
+    if [[ -z "$PYTHON_VERSION" ]]; then
+        if command -v python3 >/dev/null 2>&1; then
+            PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
+        elif command -v python >/dev/null 2>&1; then
+            PYTHON_VERSION=$(python --version 2>&1 | awk '{print $2}')
+        fi
+    fi
 }
 
-chpwd() {
-  cache_python_version
-}
-
-# Enhanced Git information - SPACED VERSION
-parse_git_branch() {
-  local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-  if [[ -n $branch ]]; then
-    local staged=""
-    local unstaged=""
-    local untracked=""
+# Obtener información de Git en una sola pasada
+get_git_info() {
+    local branch=""
+    local status_output=""
+    local staged_count=0
+    local unstaged_count=0
+    local untracked_count=0
     local commit_count=""
-    
-    commit_count=$(git rev-list --count HEAD 2>/dev/null)
-    
-    # Staged files (ready to commit)
-    local staged_count=$(git diff --cached --name-only 2>/dev/null | wc -l)
-    # Modified but not staged files
-    local unstaged_count=$(git diff --name-only 2>/dev/null | wc -l)
-    # Untracked files
-    local untracked_count=$(git ls-files --others --exclude-standard 2>/dev/null | wc -l)
-    
-    if [[ $staged_count -gt 0 ]]; then
-      staged="  ${staged_count} staged"
+
+    if git rev-parse --git-dir >/dev/null 2>&1; then
+        branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+        if [[ -n $branch ]]; then
+            # Obtener estado completo con una llamada
+            status_output=$(git status --porcelain 2>/dev/null)
+
+            # Contar staged, unstaged y untracked usando awk
+            if [[ -n "$status_output" ]]; then
+                # Formato XY path; X = index, Y = working tree
+                staged_count=$(echo "$status_output" | awk '$1 ~ /^[MARC]/ {count++} END {print count+0}')
+                unstaged_count=$(echo "$status_output" | awk '$1 ~ /^..[MARC]/ {count++} END {print count+0}')
+                untracked_count=$(echo "$status_output" | awk '$1 == "??" {count++} END {print count+0}')
+            fi
+
+            # Solo contar commits si el repo no es enorme (opcional, se puede quitar)
+            # Podrías cachear este valor o simplemente omitirlo si ralentiza
+            commit_count=$(git rev-list --count HEAD 2>/dev/null || echo "?")
+        fi
     fi
-    if [[ $unstaged_count -gt 0 ]]; then
-      unstaged="  ${unstaged_count} modified"
+
+    # Construir la parte de Git
+    local git_part=""
+    if [[ -n $branch ]]; then
+        git_part=" ${branch}"
+        if [[ $staged_count -gt 0 ]]; then
+            git_part+="  ${staged_count} staged"
+        fi
+        if [[ $unstaged_count -gt 0 ]]; then
+            git_part+="  ${unstaged_count} modified"
+        fi
+        if [[ $untracked_count -gt 0 ]]; then
+            git_part+="  ${untracked_count} untracked"
+        fi
+        if [[ -n $commit_count ]]; then
+            git_part+="  ${commit_count} commits"
+        fi
     fi
-    if [[ $untracked_count -gt 0 ]]; then
-      untracked="  ${untracked_count} untracked"
-    fi
-    
-    local changes="${staged}${unstaged}${untracked}"
-    echo " ${branch}${changes}  ${commit_count} commits"
-  fi
+    echo "$git_part"
 }
 
-# Python virtual environment information - SPACED VERSION
-venv_info() {
-  if [[ -n "$VIRTUAL_ENV" ]]; then
-    local python_version=$(python --version 2>&1 | awk '{print $2}')
-    local env_type="venv"
-    
-    # Detect conda environments
-    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
-      env_type="conda"
-      echo " $(basename "$CONDA_DEFAULT_ENV")  ${python_version} "
-    else
-      echo " $(basename "$VIRTUAL_ENV")  ${python_version} "
+# Información del entorno virtual Python
+get_venv_info() {
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        local env_type="venv"
+        local py_ver="$PYTHON_VERSION"
+        if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+            env_type="conda"
+            echo " $(basename "$CONDA_DEFAULT_ENV")  ${py_ver} "
+        else
+            echo " $(basename "$VIRTUAL_ENV")  ${py_ver} "
+        fi
     fi
-  fi
 }
 
-# Disable Python's default venv prefix
+# Función principal que se ejecuta antes de cada prompt
+update_prompt() {
+    # Cache de versión de Python si cambió el directorio
+    if [[ "$PWD" != "$LAST_PWD" ]]; then
+        LAST_PWD="$PWD"
+        # Podríamos invalidar la versión de Python si cambió el entorno
+        # Pero normalmente no cambia; se puede mantener global
+        # PYTHON_VERSION="" # descomentar si quieres recargar cada cd
+        get_python_version
+    fi
+
+    # Construir partes del prompt
+    local venv_part="$(get_venv_info)"
+    local git_part="$(get_git_info)"
+
+    # Asignar PS1
+    PS1="${COLOR1}${venv_part}${COLOR3}\w ${COLOR7}${git_part}\n${COLOR8}❯"
+}
+
+# Desactivar prefijo de Python en venv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# Ejecutar update_prompt antes de mostrar el prompt
+PROMPT_COMMAND="update_prompt"
 
 
-# Final PS1 (your image style, no RESET, no jobs_info)
-PS1_CUSTOM="${COLOR1}\$(venv_info)${COLOR3}\w ${COLOR7}\$(parse_git_branch)\n${COLOR8}❯"
-export PS1=$PS1_CUSTOM
+
+
 
