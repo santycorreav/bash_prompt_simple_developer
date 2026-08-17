@@ -1,15 +1,15 @@
 # ====== COLORS THEME START ======
-# Base colors
-COLOR1="\[\e[32m\]"      # Green
-COLOR2="\[\e[34m\]"      # Blue
-COLOR3="\[\e[33m\]"      # Yellow
-COLOR4="\[\e[36m\]"      # Cyan
-COLOR5="\[\e[31m\]"      # Red
+# Colores base (Negrita + Alta intensidad para fondo negro)
+COLOR1="\[\e[1;92m\]"      # Verde Neón brillante
+COLOR2="\[\e[1;94m\]"      # Azul claro brillante
+COLOR3="\[\e[1;93m\]"      # Amarillo brillante
+COLOR4="\[\e[1;96m\]"      # Cian / Turquesa eléctrico
+COLOR5="\[\e[1;91m\]"      # Rojo brillante
 
-# Specific colors
-COLOR6="\[\e[95m\]"      # Bright Magenta - Python
-COLOR7="\[\e[94m\]"      # Bright Blue - Git
-COLOR8="\[\e[38;2;255;255;255m\]"  # Pure White, for terminal and ❯
+# Colores específicos
+COLOR6="\[\e[1;95m\]"      # Magenta brillante - Python
+COLOR7="\[\e[1;96m\]"      # Cian eléctrico (reemplaza el azul oscuro para que Git resalte)
+COLOR8="\[\e[1;97m\]"      # Blanco puro neón en negrita - Terminal y ❯
 # ====== COLORS THEME END ======
 
 # Variables globales para cache
